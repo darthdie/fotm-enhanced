@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxWidth="1.7976931348623157E308" prefHeight="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fotm.gui.EditHeroCardDialogController">
+   <center>
+      <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <SplitPane fx:id="splitPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+               <items>
+                  <ScrollPane fx:id="leftPane" prefHeight="200.0" prefWidth="200.0" />
+               </items>
+            </SplitPane>
+            <HBox prefWidth="200.0" spacing="4.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button mnemonicParsing="false" text="OK" />
+                  <Button mnemonicParsing="false" text="Cancel" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,35 @@
+#cardname {
+    -fx-font: 65px "CrashLanding BB";
+    -fx-font-weight: bold;
+    -fx-fill: linear-gradient(from 0% 0% to 0% 150%, repeat, rgb(250, 242, 2) 10%, rgb(227, 58, 39) 50%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+    /*-fx-fill: linear-gradient(from 0% 30% to 0% 100%, repeat, rgb(250, 242, 2) 0%, rgb(227, 58, 39) 50%);*/
+}
+
+#cardtext {
+    -fx-font: 24px "RedStateBlueState BB";
+}
+
+#quotetext {
+    -fx-font: 20px "RedStateBlueState BB";
+    -fx-font-style: italic;
+}
+
+#issuetext {
+    -fx-font: 16px "RedStateBlueState BB";
+    -fx-font-style: italic;
+}
+
+#hptext {
+    -fx-font: 60px "CrashLanding BB";
+    /*-fx-fill: linear-gradient(from 0% 15% to 0% 190%, repeat, rgb(60, 6, 6) 10%, rgb(255, 4, 40) 35%);*/
+    -fx-fill: linear-gradient(from 0% 15% to 0% 190%, repeat, rgb(60, 6, 6) 10%, rgb(255, 4, 40) 20%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#classtext {
+    -fx-font: 35px "RedStateBlueState BB";
+    -fx-font-weight: bold;
+}

@@ -1,0 +1,21 @@
+#powerName {
+    
+}
+
+#powerLabel {
+    -fx-font: 24px "RedStateBlueState BB";
+    -fx-font-weight: bold;
+}
+
+#powerText {
+    -fx-font: 24px "RedStateBlueState BB";
+}
+
+#heroName {
+    -fx-font: 65px "ArmorPiercing BB";
+}
+
+#hp {
+    -fx-font: 60px "CrashLanding BB";
+}
+
