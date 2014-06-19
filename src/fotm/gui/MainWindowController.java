@@ -6,25 +6,17 @@
 package fotm.gui;
 
 import fotm.Card;
-import fotm.CardRenderer;
 import fotm.Deck;
 import fotm.DeckFile;
 import fotm.DeckType;
-import fotm.HeroCard;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,13 +25,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -50,47 +38,36 @@ import javafx.stage.Window;
  */
 public class MainWindowController implements Initializable {
 
-    @FXML
-    private TableView<Card> cardTableView;
-    @FXML
-    private TableColumn<Card, Integer> cardIDColumn;
-    @FXML
-    private TableColumn<Card, String> cardNameColumn;
-    @FXML
-    private TableColumn<Card, String> cardTypeColumn;
-    @FXML
-    private TableColumn<Card, String> cardClassesColumn;
-    @FXML
-    private TableColumn<Card, String> cardHPColumn;
-    @FXML
-    private TableColumn<Card, Integer> cardIndexColumn;
+    /*@FXML private TableView<Card> cardTableView;
+    @FXML private TableColumn<Card, Integer> cardIDColumn;
+    @FXML private TableColumn<Card, String> cardNameColumn;
+    @FXML private TableColumn<Card, String> cardTypeColumn;
+    @FXML private TableColumn<Card, String> cardClassesColumn;
+    @FXML private TableColumn<Card, String> cardHPColumn;
+    @FXML private TableColumn<Card, Integer> cardIndexColumn;*/
+    
+    @FXML private TabPane tabPane;
 
-    @FXML
-    private Button toolbarAddCardButton;
-    @FXML
-    private Button toolbarDeleteCardButton;
-    @FXML
-    private Button toolbarIncrementCardButton;
-    @FXML
-    private Button toolbarDecrementCardButton;
+    @FXML private Button toolbarAddCardButton;
+    @FXML private Button toolbarDeleteCardButton;
+    @FXML private Button toolbarIncrementCardButton;
+    @FXML private Button toolbarDecrementCardButton;
 
     @FXML Button toolbarEditCSSButton;
     
     @FXML MenuItem menuOpenDeck;
     
-    @FXML
-    private ImageView selectedCardImageView;
+    @FXML private ImageView selectedCardImageView;
 
     //private ObjectProperty<javafx.scene.image.Image> imageProperty = new SimpleObjectProperty<>();
     private ObjectProperty<Image> cardImage = new SimpleObjectProperty<>();
-
-    private Deck deck;
+    private ObjectProperty<Deck> deckProperty = new SimpleObjectProperty<>();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        deck = new Deck(DeckType.Hero);
+        deckProperty.set(new Deck(DeckType.Hero));
         
-        EventHandler click = (EventHandler) (Event e) -> {
+        /*EventHandler click = (EventHandler) (Event e) -> {
             MouseEvent t = (MouseEvent) e;
             if (t.getClickCount() == 2) {
                 Card card = (Card) cardTableView.getItems().get(((TableCell) t.getSource()).getIndex());
@@ -151,7 +128,7 @@ public class MainWindowController implements Initializable {
 
                 //cardImage.set(CardRenderer.render(selectedCard));
               }
-        });
+        });*/
 
         ((ImageView) toolbarAddCardButton.getGraphic()).setImage(new Image("file:Images/add.png"));
         toolbarAddCardButton.setOnAction((ActionEvent event) -> {
@@ -213,11 +190,11 @@ public class MainWindowController implements Initializable {
 
             Parent root = (Parent) fxmlLoader.load(location.openStream());        
             
-            ((EditCSSDialogController) fxmlLoader.getController()).setCSS(deck.getCss());
+            ((EditCSSDialogController) fxmlLoader.getController()).setCSS(deckProperty.get().getCss());
 
             Scene scene = new Scene(root);
 
-            Window w = cardTableView.getScene().getWindow();
+            Window w = toolbarEditCSSButton.getScene().getWindow();
             Stage dialog = new Stage();
             dialog.setWidth(w.getWidth() * .75);
             dialog.setHeight(w.getHeight() * .75);
@@ -235,13 +212,13 @@ public class MainWindowController implements Initializable {
     
     private void openDeck() {
         FilteredFileChooser dlg = new FilteredFileChooser(FilterExtensionType.Deck);
-        File f = dlg.showOpenDialog(cardTableView.getScene().getWindow());
+        File f = dlg.showOpenDialog(toolbarEditCSSButton.getScene().getWindow());
         if(f == null) {
             return;
         }
         
-        deck.getCards().clear();
+        deckProperty.get().getCards().clear();
         Deck d = DeckFile.loadFrom(f.getAbsolutePath());
-        deck.getCards().addAll(d.getCards());
+        deckProperty.get().getCards().addAll(d.getCards());
     }
 }
