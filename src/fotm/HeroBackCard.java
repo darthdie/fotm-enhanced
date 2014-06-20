@@ -1,6 +1,7 @@
 
 package fotm;
 
+import java.util.Objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -20,17 +21,22 @@ public class HeroBackCard extends Card {
     public HeroBackCard(Integer id, String name) {
         super(id, name);
         
-        this.classes = new SimpleStringProperty("");
-        this.abilityLine1 = new SimpleStringProperty("");
-        this.abilityLine2 = new SimpleStringProperty("");
-        this.abilityLine3 = new SimpleStringProperty("");
-        this.abilityLine4 = new SimpleStringProperty("");
-        this.abilityLine5 = new SimpleStringProperty("");
-        this.abilityLine6 = new SimpleStringProperty("");
+        this.classes = new SimpleStringProperty(null, "classes");
+        this.abilityLine1 = new SimpleStringProperty(null, "abilityLine1");
+        this.abilityLine2 = new SimpleStringProperty(null, "abilityLine2");
+        this.abilityLine3 = new SimpleStringProperty(null, "abilityLine3");
+        this.abilityLine4 = new SimpleStringProperty(null, "abilityLine4");
+        this.abilityLine5 = new SimpleStringProperty(null, "abilityLine5");
+        this.abilityLine6 = new SimpleStringProperty(null, "abilityLine6");
+        
+        this.addProperties(classes, abilityLine1, abilityLine2, abilityLine3, abilityLine4, abilityLine5, abilityLine6);
     }
     
     public void setClasses(String value) {
-        classes.set(value);
+        if (!Objects.equals(classes.get(), value)) {
+            classes.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getClasses() {
@@ -42,7 +48,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine1(String value) {
-        abilityLine1.set(value);
+        if (!Objects.equals(abilityLine1.get(), value)) {
+            abilityLine1.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine1() {
@@ -54,7 +63,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine2(String value) {
-        abilityLine2.set(value);
+        if (!Objects.equals(abilityLine2.get(), value)) {
+            abilityLine2.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine2() {
@@ -66,7 +78,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine3(String value) {
-        abilityLine3.set(value);
+        if (!Objects.equals(abilityLine3.get(), value)) {
+            abilityLine3.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine3() {
@@ -78,7 +93,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine4(String value) {
-        abilityLine4.set(value);
+        if (!Objects.equals(abilityLine4.get(), value)) {
+            abilityLine4.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine4() {
@@ -90,7 +108,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine5(String value) {
-        abilityLine5.set(value);
+        if (!Objects.equals(abilityLine5.get(), value)) {
+            abilityLine5.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine5() {
@@ -102,7 +123,10 @@ public class HeroBackCard extends Card {
     }
     
     public void setAbilityLine6(String value) {
-        abilityLine6.set(value);
+        if (!Objects.equals(abilityLine6.get(), value)) {
+            abilityLine6.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getAbilityLine6() {

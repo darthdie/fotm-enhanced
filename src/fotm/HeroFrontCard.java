@@ -1,6 +1,6 @@
-
 package fotm;
 
+import java.util.Objects;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,26 +12,32 @@ import javafx.scene.image.Image;
  * @author Briar
  */
 public class HeroFrontCard extends Card {
+
     private final SimpleStringProperty classes;
     private final SimpleStringProperty hp;
     private final SimpleStringProperty powerName;
     private final SimpleStringProperty powerText;
     private final SimpleStringProperty nemesisImagePath;
     private final SimpleObjectProperty<Image> nemesisImage;
-    
+
     public HeroFrontCard(Integer id, String name) {
         super(id, name);
+
+        this.classes = new SimpleStringProperty(null, "classes");
+        this.hp = new SimpleStringProperty(null, "hp", "N/A");
+        this.powerName = new SimpleStringProperty(null, "powerName");
+        this.powerText = new SimpleStringProperty(null, "powerText");
+        this.nemesisImagePath = new SimpleStringProperty(null, "nemesisImagePath");
+        this.nemesisImage = new SimpleObjectProperty<>(null, "nemesisImage");
         
-        this.classes = new SimpleStringProperty("");
-        this.hp = new SimpleStringProperty("N/A");
-        this.powerName = new SimpleStringProperty();
-        this.powerText = new SimpleStringProperty();
-        this.nemesisImagePath = new SimpleStringProperty();
-        this.nemesisImage = new SimpleObjectProperty<>();
+        this.addProperties(classes, hp, powerName, powerText, nemesisImagePath);
     }
-    
+
     public void setClasses(String value) {
-        classes.set(value);
+        if (!Objects.equals(classes.get(), value)) {
+            classes.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getClasses() {
@@ -41,21 +47,27 @@ public class HeroFrontCard extends Card {
     public StringProperty classesProperty() {
         return classes;
     }
-    
+
     public String getHp() {
         return hp.get();
     }
 
     public void setHp(String value) {
-        hp.set(value);
+        if (!Objects.equals(hp.get(), value)) {
+            hp.set(value);
+            setIsDirty(true);
+        }
     }
 
     public StringProperty hpProperty() {
         return hp;
     }
-    
+
     public void setPowerName(String value) {
-        powerName.set(value);
+        if (!Objects.equals(powerName.get(), value)) {
+            powerName.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getPowerName() {
@@ -65,9 +77,12 @@ public class HeroFrontCard extends Card {
     public StringProperty powerNameProperty() {
         return powerName;
     }
-    
+
     public void setPowerText(String value) {
-        powerText.set(value);
+        if (!Objects.equals(powerText.get(), value)) {
+            powerText.set(value);
+            setIsDirty(true);
+        }
     }
 
     public String getPowerText() {
@@ -77,18 +92,23 @@ public class HeroFrontCard extends Card {
     public StringProperty powerTextProperty() {
         return powerText;
     }
-    
+
     public String getNemesisImagePath() {
         return nemesisImagePath.get();
     }
 
     public void setNemesisImagePath(String value) {
-        nemesisImagePath.set(value);
-        if (value != null) {
-            try {
-                nemesisImage.set(new Image("file:" + value));
-            } catch (Exception ex) {
+        if (!Objects.equals(nemesisImagePath.get(), value)) {
+            nemesisImagePath.set(value);
+
+            if (value != null) {
+                try {
+                    nemesisImage.set(new Image("file:" + value));
+                } catch (Exception ex) {
+                }
             }
+            
+            setIsDirty(true);
         }
     }
 
