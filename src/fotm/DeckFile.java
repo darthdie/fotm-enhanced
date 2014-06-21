@@ -78,7 +78,7 @@ public class DeckFile {
             card.setIssue(findElement(el, "issuestring"));
             //card.setNameColor(new Color(new Integer(findElement(el, "namecolour"))));
             //card.setClassColor(new Color(new Integer(findElement(el, "classcolour"))));
-            card.setText(findElement(el, "cardtext"));
+            card.setText(findWholeTextElement(el, "cardtext"));
 
             /*if (findElement(el, "namefontcolor").isEmpty() == false) {
                 card.setNameFontColor(new Color(new Integer(findElement(el, "namefontcolor"))));
@@ -120,7 +120,7 @@ public class DeckFile {
                 card.setQuoteFont(findFontElement(el, "quotefont"));
             }*/
             
-            //card.setIsDirty(false);
+            card.setIsDirty(false);
 
             cards.add(card);
         }
@@ -175,9 +175,9 @@ public class DeckFile {
 
             if (findFontElement(el, "powerfont") != null) {
                 card.setPowerFont(findFontElement(el, "powerfont"));
-            }
+            }*/
 
-            card.setIsDirty(false);*/
+            card.setIsDirty(false);
             
             cards.add(card);
         }
@@ -211,9 +211,9 @@ public class DeckFile {
 
             if (findFontElement(el, "textfont") != null) {
                 card.setTextFont(findFontElement(el, "textfont"));
-            }
+            }*/
             
-            card.setIsDirty(false);*/
+            card.setIsDirty(false);
 
             cards.add(card);
         }
@@ -223,6 +223,14 @@ public class DeckFile {
     
     
     private static String findElement(Element el, String attr) {
+        for (Element sel : el.getElementsByTag(attr)) {
+            return sel.text();
+        }
+        
+        return "";
+    }
+    
+    private static String findWholeTextElement(Element el, String attr) {
         String val = "";
         Elements subels = el.getElementsByTag(attr);
         for (Element sel : subels) {
