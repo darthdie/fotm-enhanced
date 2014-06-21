@@ -16,6 +16,13 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
+                        <Menu mnemonicParsing="false" text="New">
+                          <items>
+                            <MenuItem fx:id="newHeroDeck" mnemonicParsing="false" text="Hero Deck" />
+                              <MenuItem fx:id="newVillainDeck" mnemonicParsing="false" text="Villain Deck" />
+                              <MenuItem fx:id="newEnvironmentDeck" mnemonicParsing="false" text="Environment Deck" />
+                          </items>
+                        </Menu>
                         <MenuItem fx:id="menuOpenDeck" mnemonicParsing="false" text="Open Deck">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="O" control="ANY" meta="UP" shift="UP" shortcut="UP" />

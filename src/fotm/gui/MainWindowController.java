@@ -51,19 +51,31 @@ public class MainWindowController implements Initializable {
 
     @FXML
     MenuItem menuOpenDeck;
+    
+    @FXML MenuItem newHeroDeck;
+    @FXML MenuItem newVillainDeck;
+    @FXML MenuItem newEnvironmentDeck;
 
-    //@FXML private ImageView selectedCardImageView;
-
-    //private ObjectProperty<javafx.scene.image.Image> imageProperty = new SimpleObjectProperty<>();
-    private ObjectProperty<Image> cardImage = new SimpleObjectProperty<>();
-    private ObjectProperty<Deck> deckProperty = new SimpleObjectProperty<>();
+    //private ObjectProperty<Deck> deckProperty = new SimpleObjectProperty<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        deckProperty.set(new Deck(DeckType.Hero));
+        //deckProperty.set(new Deck(DeckType.Hero));
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+        
+        newHeroDeck.setOnAction((ActionEvent event) -> {
+            createNewHeroDeck();
+        });
 
+        newVillainDeck.setOnAction((ActionEvent event) -> {
+            createNewVillainDeck();
+        });
+                
+        newEnvironmentDeck.setOnAction((ActionEvent event) -> {
+            createNewEnvironmentDeck();
+        });
+        
         ((ImageView) toolbarAddCardButton.getGraphic()).setImage(new Image("file:Images/add.png"));
         toolbarAddCardButton.setOnAction((ActionEvent event) -> {
             addCard();
@@ -116,7 +128,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void editCSS() {
-        try {
+        /*try {
             URL location = getClass().getResource("EditCSSDialog.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(location);
@@ -140,7 +152,7 @@ public class MainWindowController implements Initializable {
             if (ex != null) {
 
             }
-        }
+        }*/
     }
 
     private void openDeck() {
@@ -150,11 +162,10 @@ public class MainWindowController implements Initializable {
             return;
         }
 
-        deckProperty.get().getCards().clear();
         Deck d = DeckFile.loadFrom(f.getAbsolutePath());
-        deckProperty.get().getCards().addAll(d.getCards());
+        d.getCards().addAll(d.getCards());
 
-        DeckOverviewTabView v = new DeckOverviewTabView(deckProperty);
+        DeckOverviewTabView v = new DeckOverviewTabView(d);
         v.addEditListener(this::handleEditCardRequest);
 
         tabPane.getTabs().add(v.getTabProperty().get());
@@ -166,11 +177,36 @@ public class MainWindowController implements Initializable {
         }
         
         EditCardTabView tv = new EditCardTabView(card);
-        tabPane.getTabs().add(tv.getTabProperty().get());
-        tabPane.getSelectionModel().selectLast();
+        addTab(tv.tabProperty().get());
     }
     
     private boolean tabWithNameExists(String name) {
         return tabPane.getTabs().stream().anyMatch((tab) -> (tab.getText().equals(name)));
+    }
+    
+    private void createNewHeroDeck() {
+        Deck d = new Deck(DeckType.Hero);
+        DeckOverviewTabView v = new DeckOverviewTabView(d);
+        v.addEditListener(this::handleEditCardRequest);
+        addTab(v.getTabProperty().get());
+    }
+    
+    private void createNewVillainDeck() {
+        Deck d = new Deck(DeckType.Villain);
+        DeckOverviewTabView v = new DeckOverviewTabView(d);
+        v.addEditListener(this::handleEditCardRequest);
+        addTab(v.getTabProperty().get());
+    }
+        
+    private void createNewEnvironmentDeck() {
+        Deck d = new Deck(DeckType.Environment);
+        DeckOverviewTabView v = new DeckOverviewTabView(d);
+        v.addEditListener(this::handleEditCardRequest);
+        addTab(v.getTabProperty().get());
+    }
+    
+    private void addTab(Tab tab) {
+        tabPane.getTabs().add(tab);
+        tabPane.getSelectionModel().selectLast();
     }
 }

@@ -28,10 +28,10 @@ public class DeckOverviewTabView {
     private TableColumn<Card, String> cardHPColumn;
     private TableColumn<Card, Integer> cardIndexColumn;
     
-    public DeckOverviewTabView(ObjectProperty<Deck> deck) {
+    public DeckOverviewTabView(Deck deck) {
         listeners = new ArrayList<>();
         tabProperty = new SimpleObjectProperty<>();
-        deckProperty = deck;
+        deckProperty = new SimpleObjectProperty<>(deck);
         
         initTab();
     }

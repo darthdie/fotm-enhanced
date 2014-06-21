@@ -107,7 +107,7 @@ public class EditCardTabView {
          v.getChildren().addAll(sp, hb);*/
     }
 
-    public ObjectProperty<Tab> getTabProperty() {
+    public ObjectProperty<Tab> tabProperty() {
         return tabProperty;
     }
 }
