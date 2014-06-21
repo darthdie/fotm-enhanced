@@ -6,17 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class DeckOverviewTabView {
     private final SimpleObjectProperty<Tab> tabProperty;
+    private final SimpleObjectProperty<ToolBar> toolbarProperty;
     private final ObjectProperty<Deck> deckProperty;
     private final List<EditCardListener> listeners;
     
@@ -28,12 +34,21 @@ public class DeckOverviewTabView {
     private TableColumn<Card, String> cardHPColumn;
     private TableColumn<Card, Integer> cardIndexColumn;
     
+    private ToolBar toolbar;
+    private Button toolbarAddCardButton;
+    private Button toolbarDeleteCardButton;
+    private Button toolbarIncrementCardButton;
+    private Button toolbarDecrementCardButton;
+    private Button toolbarEditCSSButton;
+    
     public DeckOverviewTabView(Deck deck) {
         listeners = new ArrayList<>();
         tabProperty = new SimpleObjectProperty<>();
         deckProperty = new SimpleObjectProperty<>(deck);
+        toolbarProperty = new SimpleObjectProperty<>();
         
         initTab();
+        initToolbar();
     }
     
     private void initTab() {
@@ -89,11 +104,101 @@ public class DeckOverviewTabView {
         tabProperty.set(tab);
     }
     
+    private void initToolbar() {
+        toolbarAddCardButton = new Button("Add Card");
+        toolbarAddCardButton.setGraphic(new ImageView());
+        ((ImageView) toolbarAddCardButton.getGraphic()).setImage(new Image("file:Images/add.png"));
+        toolbarAddCardButton.setOnAction((ActionEvent event) -> {
+            addCard();
+        });
+
+        toolbarDeleteCardButton = new Button("Delete Card");
+        toolbarDeleteCardButton.setGraphic(new ImageView());
+        ((ImageView) toolbarDeleteCardButton.getGraphic()).setImage(new Image("file:Images/delete.png"));
+        toolbarDeleteCardButton.setOnAction((ActionEvent event) -> {
+            deleteCard();
+        });
+
+        toolbarIncrementCardButton = new Button("Increment #");
+        toolbarIncrementCardButton.setGraphic(new ImageView());
+        ((ImageView) toolbarIncrementCardButton.getGraphic()).setImage(new Image("file:Images/arrow_up.png"));
+        toolbarIncrementCardButton.setOnAction((ActionEvent event) -> {
+            incrementCard();
+        });
+
+        toolbarDecrementCardButton = new Button("Decrement #");
+        toolbarDecrementCardButton.setGraphic(new ImageView());
+        ((ImageView) toolbarDecrementCardButton.getGraphic()).setImage(new Image("file:Images/arrow_down.png"));
+        toolbarDecrementCardButton.setOnAction((ActionEvent event) -> {
+            decrementCard();
+        });
+
+        toolbarEditCSSButton = new Button("Edit CSS");
+        toolbarEditCSSButton.setGraphic(new ImageView());
+        ((ImageView) toolbarEditCSSButton.getGraphic()).setImage(new Image("file:Images/css.png"));
+        toolbarEditCSSButton.setOnAction((ActionEvent event) -> {
+            editCSS();
+        });
+        
+        ToolBar toolbar = new ToolBar();
+        toolbar.getItems().addAll(toolbarAddCardButton, toolbarDeleteCardButton, toolbarIncrementCardButton, toolbarDecrementCardButton, toolbarEditCSSButton);
+        
+        toolbarProperty.set(toolbar);
+    }
+    
+    private void addCard() {
+
+    }
+
+    private void deleteCard() {
+
+    }
+
+    private void incrementCard() {
+
+    }
+
+    private void decrementCard() {
+
+    }
+
+    private void editCSS() {
+        /*try {
+            URL location = getClass().getResource("EditCSSDialog.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(location);
+            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+
+            ((EditCSSDialogController) fxmlLoader.getController()).setCSS(deckProperty.get().getCss());
+
+            Scene scene = new Scene(root);
+
+            Window w = toolbarEditCSSButton.getScene().getWindow();
+            Stage dialog = new Stage();
+            dialog.setWidth(w.getWidth() * .75);
+            dialog.setHeight(w.getHeight() * .75);
+            dialog.setScene(scene);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.initOwner(w);
+            dialog.showAndWait();
+        } catch (IOException ex) {
+            if (ex != null) {
+
+            }
+        }*/
+    }
+    
     public void addEditListener(EditCardListener listener) {
         listeners.add(listener);
     }
     
-    public SimpleObjectProperty<Tab> getTabProperty() {
+    public ObjectProperty<Tab> tabProperty() {
         return tabProperty;
+    }
+    
+    public ObjectProperty<ToolBar> toolbarProperty() {
+        return toolbarProperty;
     }
 }
