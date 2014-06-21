@@ -85,13 +85,6 @@
          </children>
       </VBox>
    </top>
-   <right>
-      <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-         <items>
-            <ImageView fx:id="selectedCardImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         </items>
-      </SplitPane>
-   </right>
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
    </center>

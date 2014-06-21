@@ -21,7 +21,7 @@ public abstract class RevertableObject {
         Collections.addAll(properties, elements);
     }
     
-    public void saveChanges() {
+    public void saveState() {
         values.clear();
         
         for(Property p : properties) {
@@ -29,11 +29,11 @@ public abstract class RevertableObject {
         }
     }
     
-    public void clearValues() {
+    public void clearSavedState() {
         values.clear();
     }
     
-    public void revertChanges() {
+    public void revertToSavedState() {
         for(Property p : properties) {
             if(!values.containsKey(p.getName())) {
                 continue;

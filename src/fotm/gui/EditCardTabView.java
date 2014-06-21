@@ -34,7 +34,7 @@ public class EditCardTabView {
         tabProperty = new SimpleObjectProperty<>();
         cardProperty = card;
 
-        cardProperty.saveChanges();
+        cardProperty.saveState();
         
         initTab();
     }
@@ -55,15 +55,14 @@ public class EditCardTabView {
             public void handle(Event e) {
                 if(cardProperty.getIsDirty()) {
                     Action response = Dialogs.create()
-                        .title("You haz unsaved changes")
-                        .masthead("Just Checkin'")
+                        .title("You haz unsaved changes.")
                         .message( "You haven't saved your changes, would you like to save first?")
                         .showConfirm();
                     
                     if (response == Dialog.Actions.YES) {
                         //save
                     } else if(response == Dialog.Actions.NO) {
-                        cardProperty.revertChanges();
+                        cardProperty.revertToSavedState();
                     }
                     else {
                         e.consume();

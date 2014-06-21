@@ -52,8 +52,7 @@ public class MainWindowController implements Initializable {
     @FXML
     MenuItem menuOpenDeck;
 
-    @FXML
-    private ImageView selectedCardImageView;
+    //@FXML private ImageView selectedCardImageView;
 
     //private ObjectProperty<javafx.scene.image.Image> imageProperty = new SimpleObjectProperty<>();
     private ObjectProperty<Image> cardImage = new SimpleObjectProperty<>();
