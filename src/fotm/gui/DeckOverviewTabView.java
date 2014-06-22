@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class DeckOverviewTabView {
+public class DeckOverviewTabView implements TabView {
     private final SimpleObjectProperty<Tab> tabProperty;
     private final SimpleObjectProperty<ToolBar> toolbarProperty;
     private final ObjectProperty<Deck> deckProperty;
@@ -140,7 +140,7 @@ public class DeckOverviewTabView {
             editCSS();
         });
         
-        ToolBar toolbar = new ToolBar();
+        toolbar = new ToolBar();
         toolbar.getItems().addAll(toolbarAddCardButton, toolbarDeleteCardButton, toolbarIncrementCardButton, toolbarDecrementCardButton, toolbarEditCSSButton);
         
         toolbarProperty.set(toolbar);

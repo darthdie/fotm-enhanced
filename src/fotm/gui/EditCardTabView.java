@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -21,17 +22,14 @@ import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 import org.controlsfx.property.BeanPropertyUtils;
 
-/**
- *
- * @author Briar
- */
-public class EditCardTabView {
-
-    private final SimpleObjectProperty<Tab> tabProperty;
+public class EditCardTabView implements TabView {
+    private final ObjectProperty<Tab> tabProperty;
     private final Card cardProperty;
+    private final ObjectProperty<ToolBar> toolbarProperty;
 
     public EditCardTabView(Card card) {
         tabProperty = new SimpleObjectProperty<>();
+        toolbarProperty = new SimpleObjectProperty<>();
         cardProperty = card;
 
         cardProperty.saveState();
@@ -109,5 +107,9 @@ public class EditCardTabView {
 
     public ObjectProperty<Tab> tabProperty() {
         return tabProperty;
+    }
+    
+    public ObjectProperty<ToolBar> toolbarProperty() {
+        return toolbarProperty;
     }
 }

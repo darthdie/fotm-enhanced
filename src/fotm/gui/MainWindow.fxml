@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fotm.gui.MainWindowController">
+<BorderPane id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fotm.gui.MainWindowController">
    <top>
       <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,53 +42,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button id="toolbarAddCardButton" fx:id="toolbarAddCardButton" mnemonicParsing="false" text="Add Card">
-                     <graphic>
-                        <ImageView id="addButtonIcon" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/add.png" />
-                           </image></ImageView>
-                     </graphic></Button>
-                  <Button fx:id="toolbarDeleteCardButton" mnemonicParsing="false" text="Delete Card">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button id="toolbarIncrementCardButton" fx:id="toolbarIncrementCardButton" mnemonicParsing="false" text="Increment #">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/arrow_up.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button id="toolbarDecrementCardButton" fx:id="toolbarDecrementCardButton" mnemonicParsing="false" text="Decrement #">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="toolbarEditCSSButton" mnemonicParsing="false" text="Edit CSS">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/css.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-              </items>
-            </ToolBar>
+            <Pane fx:id="toolbarPane" maxWidth="1.7976931348623157E308" />
          </children>
       </VBox>
    </top>
