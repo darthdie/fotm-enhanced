@@ -141,6 +141,7 @@ public class DeckOverviewTabView implements TabView {
         });
         
         toolbar = new ToolBar();
+        toolbar.setPrefWidth(Double.MAX_VALUE);
         toolbar.getItems().addAll(toolbarAddCardButton, toolbarDeleteCardButton, toolbarIncrementCardButton, toolbarDecrementCardButton, toolbarEditCSSButton);
         
         toolbarProperty.set(toolbar);

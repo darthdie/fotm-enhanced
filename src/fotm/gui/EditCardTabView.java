@@ -6,6 +6,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -35,6 +37,7 @@ public class EditCardTabView implements TabView {
         cardProperty.saveState();
         
         initTab();
+        initToolbar();
     }
 
     private void initTab() {
@@ -105,6 +108,20 @@ public class EditCardTabView implements TabView {
          v.getChildren().addAll(sp, hb);*/
     }
 
+    private void initToolbar() {
+        Button saveButton = new Button("Save");
+        saveButton.setGraphic(new ImageView("file:Images/disk.png"));
+        saveButton.setOnAction((ActionEvent event) -> {
+            
+        });
+        
+        ToolBar toolbar = new ToolBar();
+        toolbar.setPrefWidth(Double.MAX_VALUE);
+        toolbar.getItems().addAll(saveButton);
+        
+        toolbarProperty.set(toolbar);
+    }
+    
     public ObjectProperty<Tab> tabProperty() {
         return tabProperty;
     }

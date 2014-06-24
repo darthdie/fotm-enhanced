@@ -35,7 +35,12 @@ public class MainWindowController implements Initializable {
         
         tabPane.getSelectionModel().selectedItemProperty().addListener(
             (ObservableValue<? extends Tab> ov, Tab t, Tab t1) -> {
+                if(t1 == null) {
+                    return;
+                }
+                
                 Object tv = t1.getUserData();
+                
                 if(tv != null && tv instanceof TabView) {
                     toolbarPane.getChildren().setAll(((TabView)tv).toolbarProperty().get());
                 }
@@ -71,12 +76,12 @@ public class MainWindowController implements Initializable {
         }
 
         Deck d = DeckFile.loadFrom(f.getAbsolutePath());
-        d.getCards().addAll(d.getCards());
+        //d.getCards().addAll(d.getCards());
 
         DeckOverviewTabView v = new DeckOverviewTabView(d);
         v.addEditListener(this::handleEditCardRequest);
 
-        tabPane.getTabs().add(v.tabProperty().get());
+        addTabView(v);
     }
     
     private void handleEditCardRequest(Card card) {
