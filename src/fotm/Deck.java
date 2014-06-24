@@ -6,12 +6,12 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Deck {
+public abstract class Deck {
     private final ObservableList<Card> cards;
     private final DeckType type;
     private final SimpleStringProperty cssProperty;
     
-    public Deck(DeckType type) {
+    protected Deck(DeckType type) {
         this.type = type;
         cards = FXCollections.observableArrayList();
 
@@ -41,4 +41,21 @@ public class Deck {
     public StringProperty getCssProperty() {
         return cssProperty;
     }
+    
+    public boolean containsName(String name) {
+        return cards.stream().anyMatch(s -> s.getName().equals(name));
+    }
+    
+    public int getNextID() {
+        int id = 0;
+        for(Card card : cards) {
+            if(card.getId() > id) {
+                id = card.getId();
+            }
+        }
+        
+        return id;
+    }
+    
+    public abstract Card createNewCard();
 }

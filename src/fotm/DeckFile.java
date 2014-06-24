@@ -1,6 +1,5 @@
 package fotm;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,11 +33,11 @@ public class DeckFile {
     private static Deck createEmptyDeck(Document doc) {
         switch (getDeckType(doc).toLowerCase()) {
             case "herodeck":
-                return new Deck(DeckType.Hero);
-            case "villaindeck":
+                return new HeroDeck();
+            /*case "villaindeck":
                 return new Deck(DeckType.Villain);
             case "environmentdeck":
-                return new Deck(DeckType.Environment);
+                return new Deck(DeckType.Environment);*/
         }
         
         return null;

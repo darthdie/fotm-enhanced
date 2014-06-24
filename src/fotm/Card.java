@@ -3,6 +3,7 @@ package fotm;
 import java.util.Objects;
 import java.util.Scanner;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -87,6 +88,10 @@ public abstract class Card extends RevertableObject {
             index.set(value);
             setIsDirty(true);
         }
+    }
+    
+    public IntegerProperty indexProperty() {
+        return index;
     }
 
     public String getPortraitPath() {

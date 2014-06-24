@@ -4,6 +4,7 @@ import fotm.Card;
 import fotm.Deck;
 import fotm.DeckFile;
 import fotm.DeckType;
+import fotm.HeroDeck;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -98,24 +99,24 @@ public class MainWindowController implements Initializable {
     }
     
     private void createNewHeroDeck() {
-        Deck d = new Deck(DeckType.Hero);
+        Deck d = new HeroDeck();
         DeckOverviewTabView v = new DeckOverviewTabView(d);
         v.addEditListener(this::handleEditCardRequest);
         addTabView(v);
     }
     
     private void createNewVillainDeck() {
-        Deck d = new Deck(DeckType.Villain);
+        /*Deck d = new VillainDeck(DeckType.Villain);
         DeckOverviewTabView v = new DeckOverviewTabView(d);
         v.addEditListener(this::handleEditCardRequest);
-        addTabView(v);
+        addTabView(v);*/
     }
         
     private void createNewEnvironmentDeck() {
-        Deck d = new Deck(DeckType.Environment);
+        /*Deck d = new Deck(DeckType.Environment);
         DeckOverviewTabView v = new DeckOverviewTabView(d);
         v.addEditListener(this::handleEditCardRequest);
-        addTabView(v);
+        addTabView(v);*/
     }
     
     private void addTabView(TabView tab) {

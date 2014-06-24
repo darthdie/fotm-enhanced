@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
  * @author Briar
  */
 public class HeroCard extends Card {
-
     private final SimpleStringProperty classes;
     private final SimpleStringProperty hp;
     private final SimpleBooleanProperty hpVisible;

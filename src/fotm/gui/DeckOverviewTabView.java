@@ -148,7 +148,7 @@ public class DeckOverviewTabView implements TabView {
     }
     
     private void addCard() {
-
+        Card card = deckProperty.get().createNewCard();
     }
 
     private void deleteCard() {
@@ -156,11 +156,25 @@ public class DeckOverviewTabView implements TabView {
     }
 
     private void incrementCard() {
-
+        int index = cardTableView.selectionModelProperty().getValue().getFocusedIndex();
+        if(index < 0) {
+            return;
+        }
+        
+        Card card = (Card) cardTableView.getItems().get(index);
+        card.setIndex(card.getIndex() + 1);
     }
 
     private void decrementCard() {
-
+        int index = cardTableView.selectionModelProperty().getValue().getFocusedIndex();
+        if(index < 0) {
+            return;
+        }
+        
+        Card card = (Card) cardTableView.getItems().get(index);
+        if(card.getIndex() > 1) {
+            card.setIndex(card.getIndex() - 1);
+        }
     }
 
     private void editCSS() {
